@@ -1,3 +1,0 @@
-/home/sergey/CLionProjects/gen/cmake-build-debug/CMakeFiles/gen.dir
-/home/sergey/CLionProjects/gen/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/sergey/CLionProjects/gen/cmake-build-debug/CMakeFiles/rebuild_cache.dir
