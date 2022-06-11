@@ -183,27 +183,6 @@ std::string &GenNode::gemStrToHtml(std::string &str)
 	return str;
 }
 
-GenNode::GenNode(GenNode &&gn) noexcept
-{
-	performance_mode = std::exchange(gn.performance_mode, false);
-	directoryEntry = std::move(gn.directoryEntry);
-	out_file_complete_path = std::move(gn.out_file_complete_path);
-	in_dir_path = std::move(gn.in_dir_path);
-	out_dir_path = std::move(gn.out_dir_path);
-}
-
-GenNode &GenNode::operator=(const GenNode &other) noexcept
-{
-	if (this == &other)
-		return *this;
-	performance_mode = other.performance_mode;
-	directoryEntry = other.directoryEntry;
-	out_file_complete_path = other.out_file_complete_path;
-	in_dir_path = other.in_dir_path;
-	out_dir_path = other.out_dir_path;
-	return *this;
-}
-
 std::ostream &operator<<(std::ostream &os, const GenNode &gn)
 {
 	os << "		<<<Generating Node>>>" << std::endl;
@@ -216,11 +195,32 @@ std::ostream &operator<<(std::ostream &os, const GenNode &gn)
 	return os;
 }
 
-GenNode &GenNode::operator=(GenNode &&gn) noexcept
-{
-	performance_mode = std::exchange(gn.performance_mode, false);
-	directoryEntry = std::move(gn.directoryEntry);
-	out_file_complete_path = std::move(gn.out_file_complete_path);
-	in_dir_path = std::move(gn.in_dir_path);
-	out_dir_path = std::move(gn.out_dir_path);
-}
+/* not necessary, default generated constructions are fine */
+//GenNode::GenNode(GenNode &&gn) noexcept
+//{
+//	performance_mode = std::exchange(gn.performance_mode, false);
+//	directoryEntry = std::move(gn.directoryEntry);
+//	out_file_complete_path = std::move(gn.out_file_complete_path);
+//	in_dir_path = std::move(gn.in_dir_path);
+//	out_dir_path = std::move(gn.out_dir_path);
+//}
+//
+//GenNode &GenNode::operator=(const GenNode &other) noexcept
+//{
+//	if (this == &other)
+//		return *this;
+//	performance_mode = other.performance_mode;
+//	directoryEntry = other.directoryEntry;
+//	out_file_complete_path = other.out_file_complete_path;
+//	in_dir_path = other.in_dir_path;
+//	out_dir_path = other.out_dir_path;
+//	return *this;
+//}
+//GenNode &GenNode::operator=(GenNode &&gn) noexcept
+//{
+//	performance_mode = std::exchange(gn.performance_mode, false);
+//	directoryEntry = std::move(gn.directoryEntry);
+//	out_file_complete_path = std::move(gn.out_file_complete_path);
+//	in_dir_path = std::move(gn.in_dir_path);
+//	out_dir_path = std::move(gn.out_dir_path);
+//}

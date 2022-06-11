@@ -33,15 +33,16 @@ public:
 			const fs::path &in_path,
 			const fs::path &out_path) noexcept;
 
-	/* start process of generating from this node*/
-	GenNode &commit();
-
+	/* default is enough for this Class */
 	GenNode() noexcept = default;
-	GenNode(GenNode &&) noexcept ;
+	GenNode(GenNode &&) noexcept = default;
 	~GenNode() noexcept = default;
 	GenNode(const GenNode &) noexcept = default;
-	GenNode & operator=(const GenNode &) noexcept;
-	GenNode & operator=(GenNode &&) noexcept;
+	GenNode &operator=(const GenNode &) noexcept = default;
+	GenNode &operator=(GenNode &&) noexcept  = default;
+
+	/* starts process of converting this node to output file */
+	GenNode &commit();
 
 private:
 	/* A line which starts with ``` (i.e. with three backticks) tells the client
@@ -54,20 +55,19 @@ private:
 	/* complete path for the current output file (for current directory entry) */
 	fs::path out_file_complete_path;
 
-	/* source directory to copy/converting FROM */
+	/* source base directory to copy/converting FROM */
 	fs::path in_dir_path;
 
-	/* destination directory to copy/converting TO */
+	/* base destination directory to copy/converting TO */
 	fs::path out_dir_path;
 
 	/* transforms gemtext string to html */
 	std::string &gemStrToHtml(std::string &str);
 
+
 	static std::string getCompleteOutPath(const fs::path &out_path,
 										  const fs::path &in_path,
 										  const fs::directory_entry &entry);
-
-
 	static bool is_gmi(fs::directory_entry &dir_entry);
 	static bool hasTag(const std::string &tag, const std::string &str);
 	static std::string &stripGemId(const std::string &tag, std::string &str);

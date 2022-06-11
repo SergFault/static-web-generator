@@ -17,7 +17,7 @@ int main(int argc, char **argv)
 	{
 		std::cout << "Error: Second argument must be an existing directory"
 				  << std::endl;
-		return 1;
+		return 0;
 	}
 
 	try
@@ -36,6 +36,5 @@ int main(int argc, char **argv)
 					<< "\t" << error.what() << std::endl;
 		return 1;
 	}
-
 	return 0;
 }
