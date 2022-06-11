@@ -1,10 +1,10 @@
 #include <filesystem>
 
-/* class encapsulating logic for
+/* encapsulating logic to construct appropriate paths
  * checking input,
  * converting input path to output path
  * converting gem to html
- * copy input to output
+ * copying input to output
 */
 
 #ifndef GEN_GENNODE_HPP
@@ -27,7 +27,6 @@ class GenNode {
 		Uri
 	};
 
-
 public:
 	GenNode(const fs::directory_entry &directoryEntry,
 			const fs::path &in_path,
@@ -44,6 +43,8 @@ public:
 	/* starts process of converting this node to output file */
 	GenNode &commit();
 
+	/* for sake of debug and error messages purposes */
+	friend std::ostream &operator<<(std::ostream &os, const GenNode &gn);
 private:
 	/* A line which starts with ``` (i.e. with three backticks) tells the client
 	 * to toggle between its ordinary parsing mode, and "preformatted mode".*/
@@ -65,6 +66,7 @@ private:
 	std::string &gemStrToHtml(std::string &str);
 
 
+	/* static util methods */
 	static std::string getCompleteOutPath(const fs::path &out_path,
 										  const fs::path &in_path,
 										  const fs::directory_entry &entry);
@@ -73,7 +75,6 @@ private:
 	static std::string &stripGemId(const std::string &tag, std::string &str);
 	static void placeTag(GenNode::GemTag gemTag, std::string &str);
 	static void trim(std::string &str);
-	friend std::ostream &operator<<(std::ostream &os, const GenNode &gn);
 };
 
 #endif

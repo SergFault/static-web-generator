@@ -188,8 +188,7 @@ std::ostream &operator<<(std::ostream &os, const GenNode &gn)
 	os << "		<<<Generating Node>>>" << std::endl;
 	os << "		Performance mode:	" << gn.performance_mode << std::endl;
 	os << "		Dir entry:			" << gn.directoryEntry << std::endl;
-	os << "		Complete out path:	" << gn.out_file_complete_path
-	   << std::endl;
+	os << "		Complete out path:	" << gn.out_file_complete_path << std::endl;
 	os << "		In dir path:		" << gn.in_dir_path << std::endl;
 	os << "		Out dir path:		" << gn.out_dir_path << std::endl;
 	return os;
