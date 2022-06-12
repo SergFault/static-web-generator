@@ -6,7 +6,6 @@
 const std::string GenNode::GMI_EXTENSION = ".gmi";
 const std::string GenNode::HTML_EXTENSION = ".html";
 
-
 GenNode::GenNode(const fs::directory_entry &dir_entry,
 				 const fs::path &in_path,
 				 const fs::path &out_path) noexcept
@@ -72,14 +71,20 @@ bool GenNode::is_gmi(fs::directory_entry &dir_entry)
 	return dir_entry.path().extension().string() == GMI_EXTENSION;
 }
 
-bool GenNode::hasTag(const std::string &tag, const std::string &str)
+bool GenNode::hasIndicator(const std::string &tag, const std::string &str)
 {
 	size_t str_pos = str.rfind(tag, tag.size() - 1);
 	return (str_pos != std::string::npos);
 }
 
-std::string &GenNode::stripGemId(const std::string &tag, std::string &str)
+std::string &GenNode::stripGemIndicator(const std::string &tag, std::string &str)
 {
+	if (tag == "'''")
+	{
+		str = str.substr(tag.size());
+		str = (performance_mode ? "</pre>" : "<pre>") + str;
+		return str;
+	}
 	return str = str.substr(tag.size());
 }
 
@@ -136,43 +141,44 @@ void GenNode::placeTag(GenNode::GemTag gemTag, std::string &str)
 
 std::string &GenNode::gemStrToHtml(std::string &str)
 {
-	if (hasTag("'''", str))
+	if (hasIndicator("'''", str))
 	{
-		stripGemId("'''", str);
+		stripGemIndicator("'''", str);
 		performance_mode = !performance_mode;
+		return str;
 	}
 
 	if (!performance_mode)
 	{
 		trim(str);
-		if (hasTag("###", str))
+		if (hasIndicator("###", str))
 		{
-			stripGemId("###", str);
+			stripGemIndicator("###", str);
 			trim(str);
 			placeTag(SubSubHeading, str);
-		} else if (hasTag("##", str))
+		} else if (hasIndicator("##", str))
 		{
-			stripGemId("##", str);
+			stripGemIndicator("##", str);
 			trim(str);
 			placeTag(SubHeading, str);
-		} else if (hasTag("#", str))
+		} else if (hasIndicator("#", str))
 		{
-			stripGemId("#", str);
+			stripGemIndicator("#", str);
 			trim(str);
 			placeTag(Heading, str);
-		} else if (hasTag("*", str))
+		} else if (hasIndicator("*", str))
 		{
-			stripGemId("*", str);
+			stripGemIndicator("*", str);
 			trim(str);
 			placeTag(List, str);
-		} else if (hasTag(">", str))
+		} else if (hasIndicator(">", str))
 		{
-			stripGemId(">", str);
+			stripGemIndicator(">", str);
 			trim(str);
 			placeTag(Blockquotes, str);
-		} else if (hasTag("=>", str))
+		} else if (hasIndicator("=>", str))
 		{
-			stripGemId("=>", str);
+			stripGemIndicator("=>", str);
 			trim(str);
 			placeTag(Uri, str);
 		} else

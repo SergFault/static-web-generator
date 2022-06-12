@@ -2,5 +2,12 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OutputDirectory/CountComposition" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OutputDirectory/Finonce" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OutputDirectory/Listmaker" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OutputDirectory/QuizzApp" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OutputDirectory/ShopList" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OutputDirectory/SimpleCalculator" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/OutputDirectory/Timefighter" vcs="Git" />
   </component>
 </project>

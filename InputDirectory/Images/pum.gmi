@@ -6,7 +6,8 @@
 
 ''' Seems like raw text
 another raw text.
-''' # And now it`s a header.
+'''
+# And now it`s a header.
 ''' # And now it`s a raw.
 '''
 =>https://example.com A cool website
@@ -17,5 +18,6 @@ another raw text.
 * Mercury
 * Gemini
 * Apollo
+lines without tag are paragraphs, and empty lines too
 
 > Gemtext supports blockquotes.  The quoted content is written as a single long line, which begins with a single > character

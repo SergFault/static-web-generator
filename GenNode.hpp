@@ -17,7 +17,7 @@ class GenNode {
 	static const std::string GMI_EXTENSION;
 	static const std::string HTML_EXTENSION;
 
-	/* enumeration representing gemtext tags */
+	/* enumeration representing gemtext IDs */
 	enum GemTag {
 		Heading,
 		SubHeading,
@@ -43,7 +43,7 @@ public:
 	/* starts process of converting this node to output file */
 	GenNode &commit();
 
-	/* for sake of debug and error messages purposes */
+	/* for sake of debug and error messages */
 	friend std::ostream &operator<<(std::ostream &os, const GenNode &gn);
 private:
 	/* A line which starts with ``` (i.e. with three backticks) tells the client
@@ -62,17 +62,16 @@ private:
 	/* base destination directory to copy/converting TO */
 	fs::path out_dir_path;
 
+
 	/* transforms gemtext string to html */
 	std::string &gemStrToHtml(std::string &str);
-
-
 	/* static util methods */
 	static std::string getCompleteOutPath(const fs::path &out_path,
 										  const fs::path &in_path,
 										  const fs::directory_entry &entry);
 	static bool is_gmi(fs::directory_entry &dir_entry);
-	static bool hasTag(const std::string &tag, const std::string &str);
-	static std::string &stripGemId(const std::string &tag, std::string &str);
+	static bool hasIndicator(const std::string &tag, const std::string &str);
+	std::string &stripGemIndicator(const std::string &tag, std::string &str);
 	static void placeTag(GenNode::GemTag gemTag, std::string &str);
 	static void trim(std::string &str);
 };
