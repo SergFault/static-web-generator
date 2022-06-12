@@ -1,6 +1,7 @@
 #include <filesystem>
 #include <iostream>
-#include "GenNode.hpp"
+#include <vector>
+#include "src/GenNode.hpp"
 
 namespace fs = std::filesystem;
 

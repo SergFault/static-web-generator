@@ -3,4 +3,4 @@ project(gen)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(gen main.cpp GenNode.cpp)
+add_executable(gen main.cpp src/GenNode.cpp)
